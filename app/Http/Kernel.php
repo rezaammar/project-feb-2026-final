@@ -65,4 +65,15 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];
+
+    protected $routeMiddleware = [
+
+    'expired' => \App\Http\Middleware\CheckMembershipExpired::class,
+    'premium' => \App\Http\Middleware\CheckPremium::class,
+    'free' => \App\Http\Middleware\CheckFree::class,
+    'cegahinject' => \App\Http\Middleware\EnsurePremiumMember::class,
+    
+    ];
+
+    
 }
