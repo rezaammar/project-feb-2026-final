@@ -4,6 +4,20 @@
 
 
 <div class="container-fluid">
+    @if(session('success'))
+    <div class="card-body">
+        <div class="alert alert-light" role="alert">
+        {{ session('success') }}
+        </div>
+    </div>
+    @endif
+    @if(session('delete'))
+    <div class="card-body">
+        <div class="alert alert-danger" role="alert">
+        {{ session('delete') }}
+        </div>
+    </div>
+    @endif
     @if(session('error'))
     <div class="card-body">
         <div class="alert alert-danger" role="alert">
@@ -49,7 +63,7 @@
 
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary">
-                        💾 Simpan
+                        💾 Simpan dan Hasilkan
                     </button>
                 </div>
                 <p class="small">Note : Maksimal data ditambahkan hanya 5 data</p>
@@ -57,26 +71,13 @@
         </div>
     </div>
 
-    @if(session('success'))
-    <div class="card-body">
-        <div class="alert alert-light" role="alert">
-        {{ session('success') }}
-        </div>
-    </div>
-    @endif
-    @if(session('delete'))
-    <div class="card-body">
-        <div class="alert alert-danger" role="alert">
-        {{ session('delete') }}
-        </div>
-    </div>
-    @endif
+
     <br>
     <hr>
 
     <h4>Data Tabel Saham dan Harga Teoritis</h4>
-    <table class="table table-bordered">
-        <tr>
+    <table class="table table-bordered table-striped">
+        <tr class="text-center">
             <th>Nama Saham</th>
             <th>Harga Cumdate</th>
             <th>Rasio RI</th>
@@ -96,7 +97,7 @@
             <td>
                 <form action="{{ route('teoritis.delete', $product->id) }}" method="POST" style="display:inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
                     @csrf @method('DELETE')
-                    <button class="badge btn btn-danger">Hapus</button>
+                    <button class="badge btn btn-danger border-0 px-1 py-1 rounded-pill btn-delete">Hapus</button>
                 </form>
             </td>
         </tr>

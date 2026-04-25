@@ -8,23 +8,22 @@
 
     <div class="p-3 mb-2 bg-light rounded-3 border shadow-sm">
         <div class="container-fluid py-2">
-            <h4 class="fs-3 fw-bold text-primary mb-1">Selamat Datang, {{ $userName }}!</h4>
+            <h4 class="fs-3 fw-bold text-primary mb-1">Payment System Stock Realize</h4>
             <p class="fs-6 text-secondary mb-3">
-                Anda memiliki produk yang siap dikelola hari ini.
+                Cocok sekali untuk Anda investor hebat di saham pilih paket Premium ini.
             </p>
             <hr class="my-2">
-            <button class="btn btn-primary btn-sm px-4" type="button">Lihat Laporan</button>
         </div>
     </div>  
     
     {{-- allert masa aktif sudah habis --}}
-    @if(session('expired'))
+    {{-- @if(session('expired'))
     <div class="card-body">
         <div class="alert alert-danger" role="alert">
             {{ session('expired') }}
         </div>
     </div>
-    @endif
+    @endif --}}
 
     <h3>Pilih Paket Langganan</h3>
 

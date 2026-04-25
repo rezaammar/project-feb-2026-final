@@ -1,0 +1,345 @@
+        body {
+            overflow-x: hidden;
+        }
+        .navbar {
+            height: 60px;
+            background: #2c3e50;
+            color: rgb(255, 255, 255);
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .toggle-btn {
+            font-size: 20px;
+            cursor: pointer;
+            margin-right: 15px;
+        }
+        /* Sidebar */
+
+        .sidebar {
+            position: sticky;
+            top: 0;
+            transition: 0.3s;
+
+        }
+        /* Notifikasi */
+        .badge {
+            position: absolute;
+            /* top: 5px;
+            right: 10px; */
+            background: red;
+            color: white;
+            font-size: 12px;
+            padding: 3px 7px;
+            border-radius: 50%;
+        }
+
+        .sidebar.collapsed {
+            width: 75px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            padding: 2px;
+            cursor: pointer;
+        }
+
+        .sidebar ul li:hover {
+            background: #2c3e50;
+        }
+
+        /* Menu Fitur Active */
+.menu.active {
+    background: #111827;
+    color: #fff;
+    border-left: 3px solid #0d6efd;
+}
+
+.menu.active .icon {
+    color: #0d6efd;
+}
+.menu.activegrup .icon {
+    color: #0d6efd;
+}
+        /* .icon {
+            width: 20px;
+            height: 20px;
+            color: #9ca3af;
+            transition: 0.2s;
+        }
+
+        .menu.active .icon {
+            color: #22c55e;
+        } */
+
+
+        .sidebar ul li span {
+            margin-left: 10px;
+        }
+
+                .sidebar.collapsed span {
+                    display: none;
+                }
+        @media (max-width: 768px) {
+            .sidebar {
+                display: none;
+            }
+        }
+        /* Content */
+        #content {
+            width: 100%;
+            transition: all 0.3s;
+            
+        }
+
+        /* ===== Bottom Nav Mobile ===== */
+        .mobile-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: #ffffff;
+            border-top: 1px solid #ddd;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            z-index: 999;
+        }
+
+        .mobile-nav a {
+            text-decoration: none;
+            font-size: 12px;
+            color: #555;
+            text-align: center;
+        }
+
+        .mobile-nav a.active {
+            color: #0d6efd;
+        }
+
+        .mobile-nav i {
+            display: block;
+            font-size: 20px;
+        }
+
+        /* Hide bottom nav on desktop */
+        @media (min-width: 992px) {
+            .mobile-nav {
+                display: none;
+            }
+        }
+
+        /* Hide sidebar on mobile */
+        @media (max-width: 991px) {
+            .sidebar {
+                display: none;
+            }
+
+            .content {
+                padding-bottom: 80px;
+            }
+        }
+
+        /* Responsif (mobile) ....................................*/
+        @media (max-width: 991px) {
+            .btn-delete {
+                font-size: 7px;
+                padding: 4px 8px !important;
+            }
+        }
+        /* Menu home */
+        @media (max-width: 1036px) {
+            .card-kalkulator {
+                padding: 10px !important;
+                font-size: 10px;
+                height: 150px !important;
+            }
+
+            .card-kalkulator h3 {
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
+
+            .card-kalkulator small {
+                font-size: 9px;
+                display: block;
+            }
+
+            .card-kalkulator .icon {
+                font-size: 14px;
+            }
+        }
+        @media (max-width: 1036px) {
+            .card-feature {
+                padding: 10px !important;
+                font-size: 10px;
+                height: 190px !important;
+            }
+
+            .card-feature h5 {
+                font-size: 12px;
+                margin-bottom: 5px;
+            }
+
+            .card-feature small {
+                font-size: 9px;
+                display: block;
+            }
+
+            .card-feature .icon {
+                font-size: 14px;
+            }
+        }
+        
+        /* Responsif navbar main (mobile) */
+        @media (max-width: 991px) {
+            .img-main-setup {
+                width: 15;
+                height: 15;
+                object-fit: cover;
+                padding: 4px 0px !important;
+            }
+            .navbar-main-setup {
+                font-size: 12px;
+                padding: 4px 0px !important;
+            }
+            .install-main-setup {
+                font-size: 12px;
+                padding: 4px 3px !important;
+            }
+            .login-main-setup {
+                font-size: 12px;
+                padding: 4px 3px !important;
+            }
+        }
+        /* CARD  Berita*/
+        .gallery-container .card {
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            background: #fff;
+            transition: 0.3s;
+        }
+
+        .gallery-container .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .gallery-container .card img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* CARD Dashboard */
+        .card-kalkulator {
+            /* border: none; */
+            border-radius: 16px;
+            transition: 0.3s;
+            height: 200px;
+        }
+        .card-kalkulator-klik:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .card-feature {
+            /* border: none; */
+            border-radius: 16px;
+            transition: 0.3s;
+            cursor: pointer;
+            height: 260px;
+        }
+        .card-feature:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+        .icon {
+            width: 40px;
+            height: 40px;
+        }
+        /* .card-body {
+            padding: 10px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            font-weight: bold;
+        } */
+
+        /* Tablet */
+        @media (min-width: 768px) {
+            .gallery-container .card {
+                width: calc(50% - 15px);
+            }
+        }
+
+        /* Laptop */
+        @media (min-width: 1024px) {
+            .gallery-container .card {
+                width: calc(25% - 15px);
+            }
+        }
+/* navigasi scroll di tools */
+.mobile-nav-wrapper {
+    overflow-x: auto;
+    white-space: nowrap;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+}
+
+.mobile-nav-tool {
+    display: inline-flex;
+    position: relative;
+}
+
+.nav-item-scroll {
+    flex: 0 0 auto;
+    min-width: 130px;
+
+    display: flex;                /* 👉 penting */
+    align-items: center;          /* vertical center */
+    justify-content: center;
+
+    padding: 12px 16px;           /* jangan terlalu besar kiri kanan */
+    text-align: center;
+
+    font-size: 14px;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.nav-item-scroll.active {
+    color: #0d6efd;
+    font-weight: 600;
+}
+
+/* indikator garis bawah */
+.nav-indicator {
+    position: absolute;
+    bottom: 0;
+    height: 3px;
+    width: 0;
+    background: #0d6efd;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+/* hide scrollbar (opsional biar clean) */
+.mobile-nav-wrapper::-webkit-scrollbar {
+    display: none;
+}
+.mobile-nav-wrapper {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('status')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->string('address')->unique()->nullable();  
+            $table->string('address')->nullable();  
             $table->string('phone', 20)->nullable();
             $table->text('bio')->nullable();
             $table->string('avatar')->default('default-avatar.png');

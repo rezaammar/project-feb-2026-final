@@ -60,7 +60,7 @@
                         Hasilkan
                     </button>
                 </div>
-                <p class="small">Note : Maksimal data ditambahkan hanya 5 data</p>
+                
             </form>
         </div>
     </div>
@@ -78,6 +78,7 @@
         {{ session('delete') }}
         </div>
     </div>
+    @endif
 
     <br>
     <hr>
@@ -88,11 +89,11 @@
     <br>
     <canvas id="" width="100" height="50"></canvas>
 
-    <h4>Grafik Harga</h4>
+    {{-- <h4>Grafik Harga</h4>
     <button id="">Tampilkan Grafik</button>
     <x-heroicon-o-lock-closed style="height: 1em; width: 1em; vertical-align: middle; margin-right: 0.25rem;" />
     <br><br>
-    <canvas id="" width="100" height="50"></canvas>
+    <canvas id="" width="100" height="50"></canvas> --}}
 
 </div>
 

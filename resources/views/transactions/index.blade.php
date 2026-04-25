@@ -4,47 +4,30 @@
 
 <div class="container mt-5">
     <h3>Riwayat Transaksi</h3>
-    <p>
-        <a class="text-black" href="/dashboard2">Kembali</a>
-    </p>
 
-    {{-- <table class="table table-bordered mt-4">
-        <thead class="table-dark">
-            <tr>
+    <table class="table table-bordered mt-4 table-striped">
+        <thead class="table-primary">
+            <tr class="text-center">
                 <th>Order ID</th>
+                <th>Waktu Order</th>
                 <th>Paket</th>
+                <th>Duration</th>
                 <th>Status</th>
-                <th>Metode</th>
-                <th>Virtual Account</th>
-                <th>Masa Aktif</th>
             </tr>
         </thead>
         <tbody>
             @foreach($transactions as $trx)
             <tr>
                 <td>{{ $trx->transaction_id }}</td>
-                <td>{{ $trx->package->name ?? '-' }}</td>
-                <td>
-                    <span class="badge bg-{{ $trx->status == 'active' ? 'success' : 'warning' }}">
-                        {{ $trx->status }}
-                    </span>
-                </td>
-                <td>{{ $trx->payment_type ?? '-' }}</td>
-                <td>{{ $trx->va_number ?? '-' }}</td>
-                <td>
-                    {{ $trx->start_date }} 
-                    <br> s/d <br>
-                    {{ $trx->end_date }}
-                </td>
+                <td>{{ $trx->created_at}}</td>
+                <td>{{ $trx->package_id}}</td>
+                <td>{{ $trx->duration }}</td>
+                <td>{{ $trx->status }}</td>
             </tr>
             @endforeach
         </tbody>
     </table>
-</div> --}}
-
-<div>
-    <h1>404</h1>
-    <h3>NOT FOUND, NOT FOUND, NOT FOUND, NOT FOUND</h3>
 </div>
+
 
 @endsection

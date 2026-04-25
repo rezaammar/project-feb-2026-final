@@ -3,24 +3,44 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
-
+use App\Models\Book;
 use App\Models\Paketnew;
 
 // use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
-    // public function index()
+    public function payment()
+    {
+        $userName = Auth::user()->username;
+        $packages = Paketnew::all();
+        
+        return view('dashboard2', compact('packages', 'userName'));
+    }
+    
+    // public function premium()
+    // {
+    //     $userName = Auth::user()->username;
+    //     $packages = Paketnew::all();
+    //     return view('premium', compact('packages', 'userName'));
+        
+    // }
+
+    // public function free()
     // {
     //     $userName = Auth::user()->username;
     //     $packages = Paketnew::all();
     //     return view('dashboard2', compact('packages', 'userName'));
     // }
+
     public function premium()
     {
         $userName = Auth::user()->username;
         $packages = Paketnew::all();
-        return view('premium', compact('packages', 'userName'));
+        $jenisDashboard = "Premium";
+        $isCollapsed = Book::getValue('user_section_collapse');
+        $book = Book::find(1);
+        return view('fitur.home.index', compact('packages', 'userName','jenisDashboard', 'isCollapsed', 'book'));
         
     }
 
@@ -28,6 +48,9 @@ class DashboardController extends Controller
     {
         $userName = Auth::user()->username;
         $packages = Paketnew::all();
-        return view('dashboard2', compact('packages', 'userName'));
+        $jenisDashboard = "";
+        $isCollapsed = Book::getValue('user_section_collapse');
+        $book = Book::find(1);
+        return view('fitur.home.index', compact('packages', 'userName','jenisDashboard', 'isCollapsed', 'book'));
     }
 }

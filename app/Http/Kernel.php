@@ -68,6 +68,7 @@ class Kernel extends HttpKernel
 
     protected $routeMiddleware = [
 
+    'admin' => \App\Http\Middleware\CheckAdmin::class,
     'expired' => \App\Http\Middleware\CheckMembershipExpired::class,
     'premium' => \App\Http\Middleware\CheckPremium::class,
     'free' => \App\Http\Middleware\CheckFree::class,

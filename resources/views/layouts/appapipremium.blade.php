@@ -107,9 +107,6 @@
                 <a class="nav-link text-white" href="/dashboard/free">Dashboard</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link text-white" href="/products">Products</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link text-white" href="/average">Average Up Down</a>
             </li>
             <li class="nav-item">
@@ -122,6 +119,10 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link text-white" href="/rasio">Ai Rasio RI
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link text-white" href="/berita">Informasi Saham
                 </a>
             </li>
             <li class="nav-item">

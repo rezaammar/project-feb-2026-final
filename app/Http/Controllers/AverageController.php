@@ -22,7 +22,7 @@ class AverageController extends Controller
         $products = Average::all();
         return view('fitur.average.indexpremium', compact('products'));
     }
-
+    //free average
     public function hitungAverage(Request $request)
     {
         $namaSaham = Str::upper($request->nama_saham);        
@@ -67,9 +67,17 @@ class AverageController extends Controller
     {
         return view('products.create');
     }
-
+    //premium average
     public function store(Request $request)
     {
+        // Hitung jumlah data milik user
+        $jumlahData = Average::where('user_id', Auth::id())->count();
+
+        // Jika sudah 5 data
+        if ($jumlahData >= 5) {
+            return redirect()->back()->with('error', 'Data maksimal hanya 5, mohon hapus sebagian jika ingin menambahkan lagi !');
+        }
+
         $namaSaham = Str::upper($request->nama_saham);        
         $jenisAverage = $request->jenis_average;
         $hargaAwal = $request->harga_awal;
@@ -94,7 +102,9 @@ class AverageController extends Controller
             'recorded_date' => now()->toDateTimeString(),
         ]);
 
-        return redirect()->back()->with('success','Data berhasil disimpan');
+        return redirect()->back()->with('success',
+        'Saham ' . $namaSaham .  ', harga averagenya sekarang adalah ' . $average
+        );
     }
 
     
@@ -110,9 +120,16 @@ class AverageController extends Controller
     //     return redirect()->route('products.index')->with('success', 'Data berhasil diupdate');
     // }
 
-    // public function destroy(Product $product)
-    // {
-    //     $product->delete();
-    //     return redirect()->route('products.index')->with('success', 'Data berhasil dihapus');
-    // }
+    public function destroy($id)
+    {
+        $Average = Average::find($id);
+
+        if (!$Average) {
+            return redirect()->back()->with('error', 'Data tidak ditemukan');
+        }
+
+        $Average->delete();
+
+        return redirect()->back()->with('delete', 'Data berhasil dihapus');
+    }
 }

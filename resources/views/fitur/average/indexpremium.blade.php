@@ -1,4 +1,4 @@
-@extends('layouts.apppremium')
+@extends('layouts.app')
 
 @section('content')
 
@@ -6,8 +6,22 @@
 <div class="container-fluid">
     @if(session('success'))
     <div class="card-body">
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-light" role="alert">
         {{ session('success') }}
+        </div>
+    </div>
+    @endif
+    @if(session('delete'))
+    <div class="card-body">
+        <div class="alert alert-danger" role="alert">
+        {{ session('delete') }}
+        </div>
+    </div>
+    @endif
+    @if(session('error'))
+    <div class="card-body">
+        <div class="alert alert-danger" role="alert">
+        {{ session('error') }}
         </div>
     </div>
     @endif
@@ -62,27 +76,57 @@
                     <label class="form-label">Lot Baru</label>
                     <input type="number" name="jumlah_baru" class="form-control" placeholder="cth: 8" required>
                 </div>
-
+                <p class="small">Note : Maksimal data ditambahkan hanya 5 data</p>
+                
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-primary">
-                        💾 Simpan
+                        💾 Simpan dan Hasilkan
                     </button>
                 </div>
             </form>
         </div>
     </div>
     <br>
+
     <hr>
 
-    <h4>Data Tabel</h4>
-    <button id="">Tampilkan Isi Tabel</button>
-    <br>
-    <canvas id="" width="100" height="50"></canvas>
+    <h5 class="mb-0">Data Tabel Avg Up dan Down</h5>
+    <table class="table table-bordered table-striped">
+        <tr class="text-center">
+            <th>Nama Saham</th>
+            <th>Jenis Average</th>
+            <th>Hrg Awal</th>
+            <th>Lot Awal</th>
+            <th>Hrg Beli Lagi</th>
+            <th>Lot Beli Lagi</th>
+            <th>Avg Sekarang</th>
+            <th>Aksi</th>
+        </tr>
+        @foreach($products as $product)
+        <tr>
+            <td>{{ $product->nama_saham }}</td>
+            <td>{{ $product->jenis_average }}</td>
+            <td>{{ (float) $product->harga_awal }}</td>
+            <td>{{ (float) $product->jumlah_awal }}</td>
+            <td>{{ (float) $product->harga_baru }}</td>
+            <td>{{ (float) $product->jumlah_baru }}</td>
+            <td>{{ (float) $product->average }}</td>
+            <td>
+                <form action="{{ route('average.delete', $product->id) }}" method="POST" style="display:inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')">
+                    @csrf @method('DELETE')
+                    <button class="badge btn btn-danger border-0 px-1 py-1 rounded-pill btn-delete">Hapus</button>
+                </form>
+            </td>
+        </tr>
+        @endforeach
+    </table>
+
+    {{-- <canvas id="" width="100" height="50"></canvas>
 
     <h4>Grafik Harga</h4>
     <button id="loadChart">Tampilkan Grafik</button>
     <br><br>
-    <canvas id="chart" width="100" height="50"></canvas>
+    <canvas id="chart" width="100" height="50"></canvas> --}}
 
 </div>
 

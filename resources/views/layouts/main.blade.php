@@ -4,11 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title }} </title>
+    {{-- Favicon --}}
+    <link rel="icon" type="image/png" href="images/favicon.png">
     {{-- <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/index.css"> --}}
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    {{-- CSS biasa --}}
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    {{-- Manifest PWA --}}
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#198754">
 
+    {{-- AOS Animation --}}
+    <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
@@ -70,12 +79,12 @@
 
         /* FEATURES */
         .features {
-            padding: 100px 0;
+            padding: 40px 0;
             background-color: white;
         }
 
         .feature-card {
-            border: none;
+            border: 1px solid rgba(0, 0, 0, 0.2);
             border-radius: 20px;
             padding: 40px 30px;
             transition: 0.3s ease;
@@ -83,7 +92,7 @@
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
+            /* transform: translateY(-10px); */
             box-shadow: 0 25px 50px rgba(0,0,0,0.1);
         }
 
@@ -91,6 +100,20 @@
             width: 70px;
             height: 70px;
             background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .feature-icon1 {
+            width: 70px;
+            height: 70px;
+            /* background: red; */
+            border: red;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -113,6 +136,52 @@
             color: #cbd5f5;
             padding: 25px 0;
         }
+
+        /* TESTIMONI */
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 450px;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .slides {
+            display: flex;
+            height: 450px;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .slide {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* Dots */
+        .dots {
+            position: absolute;
+            bottom: 15px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            margin: 5px;
+            background: rgba(255,255,255,0.5);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.3);
+        }
     </style>
 </head>
 
@@ -120,13 +189,83 @@
 
 <div class=""> <!--  container -->
   
-  @include('partials.navbar')
+  @include('partials.navbarmain')
 
   <div class="container ml-4">
     @yield('container')
   </div>
 
 </div> <!--  container -->
+
+{{-- JS --}}
+<script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+<script>
+    AOS.init({
+        duration: 1000,
+        once: true
+    });
+
+    //SLIDE TESTIMONI
+    let currentIndex = 0;
+    const slides = document.getElementById('slides');
+    const dots = document.querySelectorAll('.dot');
+    const totalSlides = dots.length;
+
+    function updateSlider() {
+        slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+
+        dots.forEach(dot => dot.classList.remove('active'));
+        dots[currentIndex].classList.add('active');
+    }
+
+    function goToSlide(index) {
+        currentIndex = index;
+        updateSlider();
+    }
+
+    // Auto slide tiap 3 detik
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalSlides;
+        updateSlider();
+    }, 3000);
+</script>
+
+{{-- PWA Javascript --}}
+<script>
+    let deferredPrompt;
+    const installBtn = document.getElementById('installBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+
+        // tampilkan tombol
+        installBtn.classList.remove('d-none');
+    });
+
+    installBtn.addEventListener('click', async () => {
+        if (!deferredPrompt) return;
+
+        deferredPrompt.prompt();
+
+        const { outcome } = await deferredPrompt.userChoice;
+
+        if (outcome === 'accepted') {
+            console.log('User install app');
+        }
+
+        deferredPrompt = null;
+        installBtn.classList.add('d-none');
+    });
+</script>
+{{-- Service Worker --}}
+<script>
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/sw.js')
+            .then(() => console.log('Service Worker Registered'));
+    }
+</script>
+
 
 </body>
    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
